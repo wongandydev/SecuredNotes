@@ -32,7 +32,7 @@ class DaysViewController: UIViewController {
         daysCollectionView.backgroundColor = .lightPink
         
         self.view.backgroundColor = .lightPink
-        self.navigationItem.title = "FUCK JAPAN JOURNAL"
+        self.navigationItem.title = "Secure Notes"
         
         addNotification(date: dateToString(date: Date()), body: "andyisamazing", identifier: "testing")
         

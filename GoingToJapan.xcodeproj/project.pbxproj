@@ -24,7 +24,7 @@
 		A0515E9E2134E14C00A08545 /* fakeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fakeData.json; sourceTree = "<group>"; };
 		A0515EA02135B1FA00A08545 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		A064A095213632AC00C79BD0 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
-		A0D2432921338FBA005111D1 /* F&%KJAPAN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "F&%KJAPAN.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0D2432921338FBA005111D1 /* SecureNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D2432C21338FBA005111D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0D2432E21338FBA005111D1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A0D2433121338FBA005111D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 		A0D2432A21338FBA005111D1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A0D2432921338FBA005111D1 /* F&%KJAPAN.app */,
+				A0D2432921338FBA005111D1 /* SecureNotes.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,7 +96,7 @@
 			);
 			name = GoingToJapan;
 			productName = GoingToJapan;
-			productReference = A0D2432921338FBA005111D1 /* F&%KJAPAN.app */;
+			productReference = A0D2432921338FBA005111D1 /* SecureNotes.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -308,7 +308,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = andywong.GoingToJapan;
-				PRODUCT_NAME = "F&%KJAPAN";
+				PRODUCT_NAME = SecureNotes;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -326,7 +326,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = andywong.GoingToJapan;
-				PRODUCT_NAME = "F&%KJAPAN";
+				PRODUCT_NAME = SecureNotes;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
