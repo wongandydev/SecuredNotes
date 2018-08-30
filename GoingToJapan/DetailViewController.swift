@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        letterTextView.contentInset = UIEdgeInsets(top: 20, left: 8, bottom: 0, right: 8)
+        letterTextView.contentInset = UIEdgeInsets(top: 20, left: 8, bottom: 0, right: 10)
         
         self.view.backgroundColor = .white
         letterTextView.text = letter
