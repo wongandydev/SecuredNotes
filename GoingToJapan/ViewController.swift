@@ -33,6 +33,7 @@ class DaysViewController: UIViewController {
         
         self.view.backgroundColor = .lightPink
         self.navigationItem.title = "Secure Notes"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: nil, action: nil)
         
         readJSON()
     }
