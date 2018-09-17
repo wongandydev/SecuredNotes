@@ -34,8 +34,6 @@ class DaysViewController: UIViewController {
         self.view.backgroundColor = .lightPink
         self.navigationItem.title = "Secure Notes"
         
-        addNotification(date: dateToString(date: Date()), body: "andyisamazing", identifier: "testing")
-        
         readJSON()
     }
     
@@ -108,7 +106,7 @@ extension DaysViewController: UICollectionViewDelegate, UICollectionViewDelegate
             if cell.passwordEntered {
                 authorizeUser(enteredPassword: "alreadyEntered", password: daysArr[indexPath.row].password, indexPath: indexPath)
             } else {
-                alertMessage(title: "Login" , message: "Enter the damn password", login: true, password: daysArr[indexPath.row].password, indexPath: indexPath)
+                alertMessage(title: "Login" , message: "Enter the password please.", login: true, password: daysArr[indexPath.row].password, indexPath: indexPath)
             }
         }
     }
@@ -171,7 +169,7 @@ extension DaysViewController {
         } else if enteredPassword == "alreadyEntered" {
             self.navigationController?.pushViewController(dvc, animated: true)
         } else {
-            alertMessage(title: "Wrong Password", message: "You entered the wrong password... You Lost IT?!?! or you trying to get it earlier?!?!?", login: false)
+            alertMessage(title: "Wrong Password", message: "You entered the wrong password.", login: false)
         }
     }
     

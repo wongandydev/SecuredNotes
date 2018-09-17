@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A010BF88214F307B00CB97C4 /* fakeData.json in Resources */ = {isa = PBXBuildFile; fileRef = A010BF87214F307A00CB97C4 /* fakeData.json */; };
 		A0515E9D213447E300A08545 /* DayPassObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0515E9C213447E200A08545 /* DayPassObject.swift */; };
-		A0515E9F2134E14C00A08545 /* fakeData.json in Resources */ = {isa = PBXBuildFile; fileRef = A0515E9E2134E14C00A08545 /* fakeData.json */; };
 		A0515EA12135B1FA00A08545 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0515EA02135B1FA00A08545 /* UIColor+Extension.swift */; };
 		A064A096213632AC00C79BD0 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A064A095213632AC00C79BD0 /* PasswordViewController.swift */; };
 		A0D2432D21338FBA005111D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2432C21338FBA005111D1 /* AppDelegate.swift */; };
@@ -20,8 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A010BF87214F307A00CB97C4 /* fakeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fakeData.json; sourceTree = SOURCE_ROOT; };
 		A0515E9C213447E200A08545 /* DayPassObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPassObject.swift; sourceTree = "<group>"; };
-		A0515E9E2134E14C00A08545 /* fakeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fakeData.json; sourceTree = "<group>"; };
 		A0515EA02135B1FA00A08545 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		A064A095213632AC00C79BD0 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		A0D2432921338FBA005111D1 /* SecureNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,7 +70,7 @@
 				A0D2433021338FBA005111D1 /* Main.storyboard */,
 				A0D2433E2133908C005111D1 /* DetailViewController.swift */,
 				A064A095213632AC00C79BD0 /* PasswordViewController.swift */,
-				A0515E9E2134E14C00A08545 /* fakeData.json */,
+				A010BF87214F307A00CB97C4 /* fakeData.json */,
 				A0515EA02135B1FA00A08545 /* UIColor+Extension.swift */,
 				A0D2433321338FBB005111D1 /* Assets.xcassets */,
 				A0D2433521338FBB005111D1 /* LaunchScreen.storyboard */,
@@ -139,8 +139,8 @@
 			files = (
 				A0D2433721338FBB005111D1 /* LaunchScreen.storyboard in Resources */,
 				A0D2433421338FBB005111D1 /* Assets.xcassets in Resources */,
-				A0515E9F2134E14C00A08545 /* fakeData.json in Resources */,
 				A0D2433221338FBA005111D1 /* Main.storyboard in Resources */,
+				A010BF88214F307B00CB97C4 /* fakeData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
