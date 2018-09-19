@@ -11,10 +11,8 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var letter: String = ""
-    var imagePath : String = ""
     
     @IBOutlet weak var letterTextView: UITextView!
-    @IBOutlet weak var photoImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +21,5 @@ class DetailViewController: UIViewController {
         
         self.view.backgroundColor = .white
         letterTextView.text = letter
-    
-        photoImageView.image = UIImage(named: imagePath)
     }
 }
