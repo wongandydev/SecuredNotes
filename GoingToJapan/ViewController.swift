@@ -24,8 +24,6 @@ class DaysViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNotificatons()
-        
         daysCollectionView.delegate = self
         daysCollectionView.dataSource = self
         daysCollectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
@@ -33,82 +31,24 @@ class DaysViewController: UIViewController {
         
         self.view.backgroundColor = .lightPink
         self.navigationItem.title = "Secure Notes"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: nil, action: nil)
-        
-        readJSON()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addNote))
+        FakeAPIManager.sharedInstance.writeJSON()
+        daysArr = FakeAPIManager.sharedInstance.readJSON()
     }
     
-    func setupNotificatons() {
-            let notificationOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-        notificationCenter.requestAuthorization(options: notificationOptions, completionHandler: { granted, error in
-            if !granted {
-                self.alertMessage(title: "No Notifications", message: "YOU DISABLE NOTIFCATIONS! TURN IT ON. Because THATS HOW YOU GET THE PASSWORDS", login: false)
-            }
-        })
-    }
-    
-    /// Add notification to the notification center
-    ///
-    /// - Parameters:
-    ///   - date: Date in string format that the notification should be sent
-    ///   - body: the password that will be used to unlock the days, note
-    ///   - identifier: a unique identifier for the specific notifcation.
-    func addNotification(date: String, body: String, identifier: String) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yy'T'hh:mm:ss a"
-        dateFormatter.timeZone = TimeZone(identifier: "America/New_York")
-
-        let date = dateFormatter.date(from: date)
-        print(date)
-
-        let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = "Another Day, Another Note, Another Password"
-        notificationContent.body = "Today's password is: \(body). Don't lose me!"
-        notificationContent.sound = UNNotificationSound.default()
-
-        let notificationDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date!)
-        let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: notificationDate, repeats: false)
-        let notificationRequest = UNNotificationRequest(identifier: identifier, content: notificationContent, trigger: notificationTrigger)
-        
-        notificationCenter.add(notificationRequest, withCompletionHandler: { error in
-            print("Error: \(error)")
-        })
-    }
-    
-    func readJSON(){
-        if let filePath = Bundle.main.path(forResource: "fakeData", ofType: "json") {
-            do {
-                let json = try Data(contentsOf: URL(fileURLWithPath: filePath), options: .mappedIfSafe)
-                let jsonResults = try JSONSerialization.jsonObject(with: json, options: .mutableLeaves)
-                if let jsonResults = jsonResults as? [AnyObject] {
-                    for result in jsonResults {
-                        if let date = result["date"] as? String,
-                            let password = result["password"] as? String,
-                            let letter = result["letter"] as? String,
-                            let imagePath = result["photoPath"] as? String{
-                            daysArr.append(DayPassObject(date: date, password: password, letter: letter, imagePath: imagePath))
-                            addNotification(date: "\(date)T9:00:00 AM", body: password, identifier: date)
-                        }
-                    }
-                }
-            } catch {
-                
-            }
-        }
+    @objc func addNote() {
+        let viewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddNotesViewController") as? AddNotesViewController
+        self.navigationController?.pushViewController(viewController!, animated: true)
     }
 }
 
 extension DaysViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if stringToDate(date: daysArr[indexPath.row].date) >= Date() {
-            alertMessage(title: "NOT TIME YET", message: "It's not time yet. This message has not been unlocked for you", login: false)
+        let cell = collectionView.cellForItem(at: indexPath) as! DayCollectionViewCell
+        if cell.passwordEntered {
+            authorizeUser(enteredPassword: "alreadyEntered", password: daysArr[indexPath.row].password, indexPath: indexPath)
         } else {
-            let cell = collectionView.cellForItem(at: indexPath) as! DayCollectionViewCell
-            if cell.passwordEntered {
-                authorizeUser(enteredPassword: "alreadyEntered", password: daysArr[indexPath.row].password, indexPath: indexPath)
-            } else {
-                alertMessage(title: "Login" , message: "Enter the password please.", login: true, password: daysArr[indexPath.row].password, indexPath: indexPath)
-            }
+            alertMessage(title: "Login" , message: "Enter the password please.", login: true, password: daysArr[indexPath.row].password, indexPath: indexPath)
         }
     }
     
@@ -132,27 +72,7 @@ extension DaysViewController: UICollectionViewDataSource {
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 5
         
-        if stringToDate(date: daysArr[indexPath.row].date) >= Date() {
-            cell.contentView.isHidden = true
-        }
-        
         return cell
-    }
-}
-
-extension UIViewController {
-    func dateToString(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yy'T'hh:mm:ss a"
-
-        return dateFormatter.string(from: date)
-    }
-
-    func stringToDate(date: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yy"
-        
-        return dateFormatter.date(from: date)!
     }
 }
 
@@ -160,7 +80,6 @@ extension DaysViewController {
     func authorizeUser(enteredPassword: String, password: String, indexPath: IndexPath) {
         let dvc = storyboard?.instantiateViewController(withIdentifier: "detailViewController") as! DetailViewController
         dvc.letter = daysArr[indexPath.row].letter
-        dvc.imagePath = daysArr[indexPath.row].imagePath
         dvc.navigationItem.title = daysArr[indexPath.row].date
         if enteredPassword == password {
             self.navigationController?.pushViewController(dvc, animated: true)

@@ -31,28 +31,7 @@ class PasswordViewController: UIViewController {
         
         self.navigationItem.title = "Passwords"
         
-        readJSON()
-    }
-    
-    func readJSON(){
-        if let filePath = Bundle.main.path(forResource: "fakeData", ofType: "json") {
-            do {
-                let json = try Data(contentsOf: URL(fileURLWithPath: filePath), options: .mappedIfSafe)
-                let jsonResults = try JSONSerialization.jsonObject(with: json, options: .mutableLeaves)
-                if let jsonResults = jsonResults as? [AnyObject] {
-                    for result in jsonResults {
-                        if let date = result["date"] as? String,
-                            let password = result["password"] as? String,
-                            let letter = result["letter"] as? String,
-                            let imagePath = result["photoPath"] as? String{
-                            passwordArr.append(DayPassObject(date: date, password: password, letter: letter, imagePath: imagePath))
-                        }
-                    }
-                }
-            } catch {
-                
-            }
-        }
+        passwordArr = FakeAPIManager.sharedInstance.readJSON()
     }
 }
 
@@ -81,10 +60,6 @@ extension PasswordViewController: UICollectionViewDataSource {
         cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 5
-        
-        if stringToDate(date: passwordArr[indexPath.row].date) >= Date() {
-            cell.isHidden = true
-        }
         
         return cell
     }
