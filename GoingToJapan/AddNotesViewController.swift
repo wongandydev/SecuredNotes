@@ -13,12 +13,14 @@ class AddNotesViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var noteTextField: UITextField!
     @IBOutlet weak var securedSwitch: UISwitch!
+    @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         titleTextField.layer.borderWidth = 2.0
         noteTextField.layer.borderWidth = 2.0
+        passwordTextField.layer.borderWidth = 2.0
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(processNote(sender:)))
         
