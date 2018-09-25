@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import UserNotifications
 
 class DayCollectionViewCell: UICollectionViewCell {
@@ -32,7 +33,7 @@ class DaysViewController: UIViewController {
         self.view.backgroundColor = .lightPink
         self.navigationItem.title = "Secure Notes"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addNote))
-        FakeAPIManager.sharedInstance.writeJSON()
+        
         daysArr = FakeAPIManager.sharedInstance.readJSON()
     }
     

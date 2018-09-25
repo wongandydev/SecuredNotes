@@ -35,8 +35,4 @@ class FakeAPIManager {
         
         return daysArr
     }
-    
-    func writeJSON() -> Bool{
-        return false
-    }
 }
