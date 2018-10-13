@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreData
+import CoreData 
 import UserNotifications
 
 class DayCollectionViewCell: UICollectionViewCell {
@@ -34,7 +34,37 @@ class DaysViewController: UIViewController {
         self.navigationItem.title = "Secure Notes"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addNote))
         
-        daysArr = FakeAPIManager.sharedInstance.readJSON()
+//        daysArr = FakeAPIManager.sharedInstance.readJSON()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let context = delegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Note")
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            
+            for data in results {
+                let title = data.value(forKey: "title") as! String
+                let text = data.value(forKey: "text") as! String
+                
+                if (data.value(forKey: "password") != nil) {
+                    let password = data.value(forKey: "password") as! String
+                    daysArr.append(DayPassObject(date: title, password: password, letter: text))
+                } else {
+                    daysArr.append(DayPassObject(date: title, letter: text))
+                }
+            }
+            
+//            print(results)
+        } catch let error as NSError {
+            print("Fetch notes failed. Error: \(error)")
+        }
     }
     
     @objc func addNote() {

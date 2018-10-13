@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class AddNotesViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
@@ -37,6 +38,31 @@ class AddNotesViewController: UIViewController {
     
     @objc func processNote(sender: UIBarButtonItem) {
         print(titleTextField.text)
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("Didn't get delegate")
+            return
+        }
+        
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Note", in: context)!
+        
+        let note = NSManagedObject(entity: entity, insertInto: context)
+        
+        note.setValue(titleTextField.text, forKey: "title")
+        note.setValue(noteTextField.text, forKey: "text")
+        
+        if (!passwordTextField.isHidden) {
+            note.setValue(passwordTextField.text, forKey: "password")
+        } else {
+            note.setValue(nil, forKey: "password")
+        }
+        
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Failed to add note. Error: \(error)")
+        }
         
         navigationController?.popViewController(animated: true)
     }

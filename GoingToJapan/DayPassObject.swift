@@ -13,7 +13,7 @@ class DayPassObject{
     var password: String
     var letter: String
     
-    init(date: String, password: String = "qwerty", letter: String) {
+    init(date: String, password: String = "", letter: String) {
         self.date = date
         self.password = password
         self.letter = letter
