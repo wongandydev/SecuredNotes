@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class AddNotesViewController: UIViewController {
+class AddNotesViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var noteTextField: UITextField!
     @IBOutlet weak var securedSwitch: UISwitch!
@@ -32,8 +32,19 @@ class AddNotesViewController: UIViewController {
         securedSwitch.isOn = false
         passwordTextField.isHidden = true
         
+        titleTextField.delegate = self
+        noteTextField.delegate = self
+        passwordTextField.delegate = self
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(processNote(sender:)))
         
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        titleTextField.resignFirstResponder()
+        noteTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        return true
     }
     
     @objc func processNote(sender: UIBarButtonItem) {

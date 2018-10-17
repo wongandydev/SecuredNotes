@@ -38,6 +38,7 @@ class DaysViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -45,6 +46,8 @@ class DaysViewController: UIViewController {
         let context = delegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Note")
+        
+        var newArr: [DayPassObject] = []
         
         do {
             let results = try context.fetch(fetchRequest)
@@ -55,16 +58,17 @@ class DaysViewController: UIViewController {
                 
                 if (data.value(forKey: "password") != nil) {
                     let password = data.value(forKey: "password") as! String
-                    daysArr.append(DayPassObject(date: title, password: password, letter: text))
+                    newArr.append(DayPassObject(date: title, password: password, letter: text))
                 } else {
-                    daysArr.append(DayPassObject(date: title, letter: text))
+                    newArr.append(DayPassObject(date: title, letter: text))
                 }
             }
-            
-//            print(results)
         } catch let error as NSError {
             print("Fetch notes failed. Error: \(error)")
         }
+        
+        daysArr = newArr
+        print("here")
     }
     
     @objc func addNote() {
