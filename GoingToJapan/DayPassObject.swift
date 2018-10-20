@@ -19,3 +19,9 @@ class DayPassObject{
         self.letter = letter
     }
 }
+
+extension DayPassObject: Equatable {
+    static func == (lhs: DayPassObject, rhs: DayPassObject) -> Bool {
+        return lhs.date == rhs.date && lhs.letter == rhs.letter && lhs.password == rhs.password
+    }
+}

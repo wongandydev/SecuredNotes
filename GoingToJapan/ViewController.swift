@@ -19,7 +19,11 @@ class DaysViewController: UIViewController {
 
     @IBOutlet weak var daysCollectionView: UICollectionView!
     
-    var daysArr: [DayPassObject] = []
+    var daysArr: [DayPassObject] = [] {
+        didSet {
+            self.daysCollectionView.reloadData()
+        }
+    }
     let notificationCenter = UNUserNotificationCenter.current()
     
     override func viewDidLoad() {
@@ -31,7 +35,7 @@ class DaysViewController: UIViewController {
         daysCollectionView.backgroundColor = .lightPink
         
         self.view.backgroundColor = .lightPink
-        self.navigationItem.title = "Secure Notes"
+        self.navigationItem.title = "SecuredNotes"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addNote))
         
 //        daysArr = FakeAPIManager.sharedInstance.readJSON()
@@ -67,8 +71,9 @@ class DaysViewController: UIViewController {
             print("Fetch notes failed. Error: \(error)")
         }
         
-        daysArr = newArr
-        print("here")
+        if (daysArr != newArr) {
+            daysArr = newArr
+        }
     }
     
     @objc func addNote() {
