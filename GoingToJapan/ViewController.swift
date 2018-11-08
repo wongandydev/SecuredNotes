@@ -19,7 +19,11 @@ class DaysViewController: UIViewController {
 
     @IBOutlet weak var daysCollectionView: UICollectionView!
     
-    var daysArr: [DayPassObject] = []
+    var daysArr: [DayPassObject] = [] {
+        didSet {
+            self.daysCollectionView.reloadData()
+        }
+    }
     let notificationCenter = UNUserNotificationCenter.current()
     
     override func viewDidLoad() {
@@ -31,14 +35,13 @@ class DaysViewController: UIViewController {
         daysCollectionView.backgroundColor = .lightPink
         
         self.view.backgroundColor = .lightPink
-        self.navigationItem.title = "Secure Notes"
+        self.navigationItem.title = "SecuredNotes"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addNote))
         
 //        daysArr = FakeAPIManager.sharedInstance.readJSON()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -55,6 +58,7 @@ class DaysViewController: UIViewController {
             for data in results {
                 let title = data.value(forKey: "title") as! String
                 let text = data.value(forKey: "text") as! String
+                print("Date Created: \(data.value(forKey: "dateCreated"))")
                 
                 if (data.value(forKey: "password") != nil) {
                     let password = data.value(forKey: "password") as! String
@@ -67,8 +71,9 @@ class DaysViewController: UIViewController {
             print("Fetch notes failed. Error: \(error)")
         }
         
-        daysArr = newArr
-        print("here")
+        if daysArr != newArr {
+            daysArr = newArr
+        }
     }
     
     @objc func addNote() {
@@ -80,10 +85,14 @@ class DaysViewController: UIViewController {
 extension DaysViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! DayCollectionViewCell
-        if cell.passwordEntered {
-            authorizeUser(enteredPassword: "alreadyEntered", password: daysArr[indexPath.row].password, indexPath: indexPath)
+        if daysArr[indexPath.row].password != "" {
+            if cell.passwordEntered {
+                authorizeUser(enteredPassword: "alreadyEntered", password: daysArr[indexPath.row].password, indexPath: indexPath)
+            } else {
+                loginMessage(title: "Login" , message: "Enter the password please.", login: true, password: daysArr[indexPath.row].password, indexPath: indexPath)
+            }
         } else {
-            alertMessage(title: "Login" , message: "Enter the password please.", login: true, password: daysArr[indexPath.row].password, indexPath: indexPath)
+            authorizeUser(enteredPassword: "nilPassword", password: daysArr[indexPath.row].password, indexPath: indexPath)
         }
     }
     
@@ -120,15 +129,18 @@ extension DaysViewController {
             self.navigationController?.pushViewController(dvc, animated: true)
             let cell = daysCollectionView.cellForItem(at: indexPath) as! DayCollectionViewCell
             cell.passwordEntered = true
-            alertMessage(title: "Access Granted", message: "You Entered the Right Password", login: false)
+            loginMessage(title: "Access Granted", message: "You Entered the Right Password", login: false)
         } else if enteredPassword == "alreadyEntered" {
             self.navigationController?.pushViewController(dvc, animated: true)
-        } else {
-            alertMessage(title: "Wrong Password", message: "You entered the wrong password.", login: false)
+        } else if enteredPassword == "nilPassword" {
+            self.navigationController?.pushViewController(dvc, animated: true)
+        }
+        else {
+            loginMessage(title: "Wrong Password", message: "You entered the wrong password.", login: false)
         }
     }
     
-    func alertMessage(title: String, message: String, login: Bool, password: String = "", indexPath: IndexPath = []) {
+    func loginMessage(title: String, message: String, login: Bool, password: String = "", indexPath: IndexPath = []) {
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
         blurView.frame = self.view.frame
         

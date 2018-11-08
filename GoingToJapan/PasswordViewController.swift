@@ -30,8 +30,6 @@ class PasswordViewController: UIViewController {
         self.view.backgroundColor = .mintGreen
         
         self.navigationItem.title = "Passwords"
-        
-        passwordArr = FakeAPIManager.sharedInstance.readJSON()
     }
 }
 

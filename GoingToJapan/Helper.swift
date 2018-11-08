@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-class FakeAPIManager {
-    static let sharedInstance = FakeAPIManager()
+class Helper {
+    static let sharedInstance = Helper()
     
     func readJSON() -> [DayPassObject]{
         var daysArr: [DayPassObject] = []
@@ -34,5 +34,13 @@ class FakeAPIManager {
         }
         
         return daysArr
+    }
+    
+    func getCurrentTime() -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy'T'hh:mm:ss a"
+        dateFormatter.timeZone = NSTimeZone.system
+        
+        return dateFormatter.date(from: dateFormatter.string(from: Date())) ?? Date()
     }
 }

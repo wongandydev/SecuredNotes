@@ -16,6 +16,8 @@ class AddNotesViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var securedSwitch: UISwitch!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    
+    
     @IBAction func didSelectSecureSwitch(_ sender: Any) {
         if securedSwitch.isOn {
             passwordTextField.isHidden = false
@@ -48,8 +50,6 @@ class AddNotesViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func processNote(sender: UIBarButtonItem) {
-        print(titleTextField.text)
-        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             print("Didn't get delegate")
             return
@@ -58,21 +58,31 @@ class AddNotesViewController: UIViewController, UITextFieldDelegate {
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Note", in: context)!
         
-        let note = NSManagedObject(entity: entity, insertInto: context)
-        
-        note.setValue(titleTextField.text, forKey: "title")
-        note.setValue(noteTextField.text, forKey: "text")
-        
-        if (!passwordTextField.isHidden) {
-            note.setValue(passwordTextField.text, forKey: "password")
+        if titleTextField.text != "" {
+            let note = NSManagedObject(entity: entity, insertInto: context)
+            
+            note.setValue(titleTextField.text, forKey: "title")
+            note.setValue(noteTextField.text, forKey: "text")
+            note.setValue(Helper.sharedInstance.getCurrentTime(), forKey: "dateCreated")
+            
+            if (!passwordTextField.isHidden) {
+                note.setValue(passwordTextField.text, forKey: "password")
+            } else {
+                note.setValue(nil, forKey: "password")
+            }
+            
+            do {
+                try context.save()
+            } catch let error as NSError {
+                print("Failed to add note. Error: \(error)")
+            }
+            
         } else {
-            note.setValue(nil, forKey: "password")
-        }
-        
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("Failed to add note. Error: \(error)")
+            let alertController: UIAlertController = UIAlertController(title: "No Title", message: "Please enter a title for this note.", preferredStyle: .alert)
+            let okaction: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okaction)
+            
+            self.present(alertController, animated: true, completion: nil)
         }
         
         navigationController?.popViewController(animated: true)

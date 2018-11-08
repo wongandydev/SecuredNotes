@@ -12,7 +12,7 @@
 		A0515E9D213447E300A08545 /* DayPassObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0515E9C213447E200A08545 /* DayPassObject.swift */; };
 		A0515EA12135B1FA00A08545 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0515EA02135B1FA00A08545 /* UIColor+Extension.swift */; };
 		A064A096213632AC00C79BD0 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A064A095213632AC00C79BD0 /* PasswordViewController.swift */; };
-		A07C8A502151C84A00575642 /* FakeAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07C8A4F2151C84A00575642 /* FakeAPIManager.swift */; };
+		A07C8A502151C84A00575642 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07C8A4F2151C84A00575642 /* Helper.swift */; };
 		A0C652B921546DAB00BD54E5 /* GoingToJapan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A0C652B721546DAB00BD54E5 /* GoingToJapan.xcdatamodeld */; };
 		A0D2432D21338FBA005111D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2432C21338FBA005111D1 /* AppDelegate.swift */; };
 		A0D2432F21338FBA005111D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2432E21338FBA005111D1 /* ViewController.swift */; };
@@ -28,7 +28,7 @@
 		A0515E9C213447E200A08545 /* DayPassObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPassObject.swift; sourceTree = "<group>"; };
 		A0515EA02135B1FA00A08545 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		A064A095213632AC00C79BD0 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
-		A07C8A4F2151C84A00575642 /* FakeAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAPIManager.swift; sourceTree = "<group>"; };
+		A07C8A4F2151C84A00575642 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		A0C652B821546DAB00BD54E5 /* GoingToJapan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoingToJapan.xcdatamodel; sourceTree = "<group>"; };
 		A0D2432921338FBA005111D1 /* SecureNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D2432C21338FBA005111D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 				A0D2433021338FBA005111D1 /* Main.storyboard */,
 				A0D2433E2133908C005111D1 /* DetailViewController.swift */,
 				A064A095213632AC00C79BD0 /* PasswordViewController.swift */,
-				A07C8A4F2151C84A00575642 /* FakeAPIManager.swift */,
+				A07C8A4F2151C84A00575642 /* Helper.swift */,
 				A010BF87214F307A00CB97C4 /* fakeData.json */,
 				A0515EA02135B1FA00A08545 /* UIColor+Extension.swift */,
 				A0D2433321338FBB005111D1 /* Assets.xcassets */,
@@ -163,7 +163,7 @@
 				A0D2433F2133908C005111D1 /* DetailViewController.swift in Sources */,
 				A0D2432F21338FBA005111D1 /* ViewController.swift in Sources */,
 				A0515E9D213447E300A08545 /* DayPassObject.swift in Sources */,
-				A07C8A502151C84A00575642 /* FakeAPIManager.swift in Sources */,
+				A07C8A502151C84A00575642 /* Helper.swift in Sources */,
 				A0D2432D21338FBA005111D1 /* AppDelegate.swift in Sources */,
 				A0C652B921546DAB00BD54E5 /* GoingToJapan.xcdatamodeld in Sources */,
 				A0515EA12135B1FA00A08545 /* UIColor+Extension.swift in Sources */,
