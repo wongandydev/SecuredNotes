@@ -58,6 +58,7 @@ class AddNotesViewController: UIViewController, UITextFieldDelegate {
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Note", in: context)!
         
+        
         if titleTextField.text != "" {
             let note = NSManagedObject(entity: entity, insertInto: context)
             
