@@ -22,33 +22,38 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bxU-Fs-Eoa">
-                                    <size key="itemSize" width="360" height="61"/>
+                                    <size key="itemSize" width="360" height="60"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dayCell" id="cwq-qc-9nY" customClass="DayCollectionViewCell" customModule="SecureNotes" customModuleProvider="target">
-                                        <rect key="frame" x="7.666666666666667" y="0.0" width="360" height="61"/>
+                                        <rect key="frame" x="7.666666666666667" y="0.0" width="360" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="360" height="61"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="360" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utj-U8-y19">
-                                                    <rect key="frame" x="20" y="20" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3m4-Hn-0Q8">
+                                                    <rect key="frame" x="20" y="31" width="320" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utj-U8-y19">
+                                                    <rect key="frame" x="20" y="9" width="320" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
-                                        <constraints>
-                                            <constraint firstItem="utj-U8-y19" firstAttribute="leading" secondItem="cwq-qc-9nY" secondAttribute="leadingMargin" constant="4" id="5Hm-cI-LHk"/>
-                                            <constraint firstItem="utj-U8-y19" firstAttribute="centerY" secondItem="cwq-qc-9nY" secondAttribute="centerY" id="miD-UO-X7I"/>
-                                        </constraints>
                                         <connections>
-                                            <outlet property="dayLabel" destination="utj-U8-y19" id="WEt-E9-v7I"/>
+                                            <outlet property="dateLabel" destination="3m4-Hn-0Q8" id="9Yc-LA-qdn"/>
+                                            <outlet property="titleLabel" destination="utj-U8-y19" id="XtZ-JE-poP"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -71,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="125.59999999999999" y="86.806596701649184"/>
+            <point key="canvasLocation" x="125.59999999999999" y="86.453201970443359"/>
         </scene>
         <!--Password View Controller-->
         <scene sceneID="YOf-bB-kBJ">
@@ -270,31 +275,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="we1-IB-Czh">
-                                <rect key="frame" x="8" y="88" width="361" height="641"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="we1-IB-Czh">
+                                <rect key="frame" x="8" y="178" width="361" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2Z-Ah-xqV">
+                                <rect key="frame" x="8" y="109" width="361" height="29"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="sdD-hd-oRS"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="we1-IB-Czh" firstAttribute="leading" secondItem="SDS-7P-4YL" secondAttribute="leading" constant="8" id="3mH-O9-dgS"/>
-                            <constraint firstItem="we1-IB-Czh" firstAttribute="top" secondItem="SDS-7P-4YL" secondAttribute="top" id="SHJ-9o-7fq"/>
-                            <constraint firstItem="SDS-7P-4YL" firstAttribute="trailing" secondItem="we1-IB-Czh" secondAttribute="trailing" constant="6" id="SeJ-ys-xgt"/>
-                            <constraint firstItem="we1-IB-Czh" firstAttribute="bottom" secondItem="SDS-7P-4YL" secondAttribute="bottom" id="yr7-8T-Bdy"/>
+                            <constraint firstItem="SDS-7P-4YL" firstAttribute="trailing" secondItem="d2Z-Ah-xqV" secondAttribute="trailing" constant="6" id="0YY-4G-GVK"/>
+                            <constraint firstItem="we1-IB-Czh" firstAttribute="bottom" secondItem="SDS-7P-4YL" secondAttribute="bottom" id="FSp-Nd-0bQ"/>
+                            <constraint firstItem="d2Z-Ah-xqV" firstAttribute="trailing" secondItem="we1-IB-Czh" secondAttribute="trailing" id="MwJ-12-iLx"/>
+                            <constraint firstItem="d2Z-Ah-xqV" firstAttribute="leading" secondItem="SDS-7P-4YL" secondAttribute="leading" constant="8" id="Ocy-Mh-ccX"/>
+                            <constraint firstItem="d2Z-Ah-xqV" firstAttribute="top" secondItem="SDS-7P-4YL" secondAttribute="top" constant="21" id="fzZ-hd-H1j"/>
+                            <constraint firstItem="d2Z-Ah-xqV" firstAttribute="leading" secondItem="we1-IB-Czh" secondAttribute="leading" id="tqw-MV-0Xu"/>
+                            <constraint firstItem="we1-IB-Czh" firstAttribute="top" secondItem="d2Z-Ah-xqV" secondAttribute="bottom" constant="40" id="yk2-0b-Jcv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SDS-7P-4YL"/>
                     </view>
                     <connections>
                         <outlet property="letterTextView" destination="we1-IB-Czh" id="N9V-QI-gZB"/>
+                        <outlet property="titleTextView" destination="d2Z-Ah-xqV" id="d1M-1m-p2B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKj-91-xWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="913" y="86"/>
+            <point key="canvasLocation" x="912.79999999999995" y="85.714285714285722"/>
         </scene>
         <!--Secrets-->
         <scene sceneID="92I-3Z-Lct">

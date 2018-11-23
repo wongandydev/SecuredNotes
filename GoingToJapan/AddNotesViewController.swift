@@ -57,15 +57,14 @@ class AddNotesViewController: UIViewController, UITextFieldDelegate {
         
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Note", in: context)!
-        
-        
+
         if titleTextField.text != "" {
             let note = NSManagedObject(entity: entity, insertInto: context)
             
             note.setValue(titleTextField.text, forKey: "title")
             note.setValue(noteTextField.text, forKey: "text")
             note.setValue(Helper.sharedInstance.getCurrentTime(), forKey: "dateCreated")
-            
+
             if (!passwordTextField.isHidden) {
                 note.setValue(passwordTextField.text, forKey: "password")
             } else {
@@ -78,8 +77,9 @@ class AddNotesViewController: UIViewController, UITextFieldDelegate {
                 print("Failed to add note. Error: \(error)")
             }
             
+            navigationController?.popViewController(animated: true)
         } else {
-            let alertController: UIAlertController = UIAlertController(title: "No Title", message: "Please enter a title for this note.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "No Title", message: "Please enter a title. It cannot be empty!", preferredStyle: UIAlertControllerStyle.alert)
             let okaction: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okaction)
             
@@ -87,5 +87,6 @@ class AddNotesViewController: UIViewController, UITextFieldDelegate {
         }
         
         navigationController?.popViewController(animated: true)
+
     }
 }

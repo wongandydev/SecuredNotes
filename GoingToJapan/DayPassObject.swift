@@ -12,16 +12,18 @@ class DayPassObject{
     var date: String
     var password: String
     var letter: String
+    var title: String
     
-    init(date: String, password: String = "", letter: String) {
+    init(date: String, password: String = "", letter: String, title: String) {
         self.date = date
         self.password = password
         self.letter = letter
+        self.title = title
     }
 }
 
 extension DayPassObject: Equatable {
     static func == (lhs: DayPassObject, rhs: DayPassObject) -> Bool {
-        return lhs.date == rhs.date && lhs.letter == rhs.letter && lhs.password == rhs.password
+        return lhs.date == rhs.date && lhs.letter == rhs.letter && lhs.password == rhs.password && lhs.title == rhs.password
     }
 }
