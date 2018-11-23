@@ -11,8 +11,9 @@ import CoreData
 import UserNotifications
 
 class DayCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var dayLabel: UILabel!
-    @IBOutlet weak var dateModifiedLabel: UILabel!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var passwordEntered: Bool = false
 }
@@ -39,6 +40,8 @@ class DaysViewController: UIViewController {
         self.view.backgroundColor = .lightPink
         self.navigationItem.title = "SecuredNotes"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addNote))
+        
+//        daysArr = FakeAPIManager.sharedInstance.readJSON()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,9 +71,9 @@ class DaysViewController: UIViewController {
                 
                 if (data.value(forKey: "password") != nil) {
                     let password = data.value(forKey: "password") as! String
-                    newArr.append(DayPassObject(title: title, password: password, letter: text, date: date))
+                    newArr.append(DayPassObject(date: date, password: password, letter: text, title: title))
                 } else {
-                    newArr.append(DayPassObject(title: title, letter: text, date: date))
+                    newArr.append(DayPassObject(date: date, letter: text, title: title))
                 }
             }
         } catch let error as NSError {
@@ -83,8 +86,10 @@ class DaysViewController: UIViewController {
     }
     
     @objc func addNote() {
+//        let viewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddNotesViewController") as? AddNotesViewController
         let viewController = storyboard?.instantiateViewController(withIdentifier: "detailViewController") as! DetailViewController
         viewController.newNote = true
+        
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
@@ -117,8 +122,9 @@ extension DaysViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dayCell", for: indexPath) as! DayCollectionViewCell
         
-        cell.dayLabel.text = daysArr[indexPath.row].title
-        cell.dateModifiedLabel.text = daysArr[indexPath.row].date
+        cell.titleLabel.text = daysArr[indexPath.row].title
+        cell.dateLabel.text = daysArr[indexPath.row].date
+        
         cell.backgroundColor = .mintGreen
         cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.borderWidth = 1
@@ -131,7 +137,7 @@ extension DaysViewController: UICollectionViewDataSource {
 extension DaysViewController {
     func authorizeUser(enteredPassword: String, password: String, indexPath: IndexPath) {
         let dvc = storyboard?.instantiateViewController(withIdentifier: "detailViewController") as! DetailViewController
-        dvc.note = daysArr[indexPath.row].letter
+        dvc.letter = daysArr[indexPath.row].letter
         dvc.noteIndexPath = indexPath.row
         dvc.noteTitle = daysArr[indexPath.row].title
         if enteredPassword == password {
