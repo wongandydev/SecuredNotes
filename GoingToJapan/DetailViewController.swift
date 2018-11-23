@@ -11,10 +11,9 @@ import CoreData
 
 class DetailViewController: UIViewController {
     
-    var note: String = ""
     var noteTitle: String = ""
+    var letter: String = ""
     var noteIndexPath: Int = 0
-    
     var newNote: Bool = false
     
     @IBOutlet weak var titleTextView: UITextView!
@@ -22,12 +21,22 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
         
-        titleTextView.text = noteTitle
-        letterTextView.text = note
         letterTextView.contentInset = UIEdgeInsets(top: 20, left: 8, bottom: 0, right: 10)
+        
+        self.view.backgroundColor = .white
+    
+        titleTextView.delegate = self
+        letterTextView.delegate = self
+        
+        titleTextView.textColor = noteTitle == "" ? .gray:.black
+        letterTextView.textColor = letter == "" ? .gray:.black
+        
+        titleTextView.text = noteTitle == "" ? "Title":noteTitle
+        letterTextView.text = letter == "" ? "Note":letter
     }
+    
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -39,18 +48,12 @@ class DetailViewController: UIViewController {
         if (newNote) {
             let entity = NSEntityDescription.entity(forEntityName: "Note", in: context)!
             
-            if titleTextView.text != "" {
+            if titleTextView.text != "" || letterTextView.text != ""{
                 let note = NSManagedObject(entity: entity, insertInto: context)
                 
-                note.setValue(titleTextView.text, forKey: "title")
+                note.setValue(titleTextView.text == "" ? "No title" : titleTextView.text, forKey: "title")
                 note.setValue(letterTextView.text, forKey: "text")
                 note.setValue(Helper.sharedInstance.getCurrentTime(), forKey: "dateCreated")
-//
-//                if (!passwordTextField.isHidden) {
-//                    note.setValue(passwordTextField.text, forKey: "password")
-//                } else {
-//                    note.setValue(nil, forKey: "password")
-//                }
                 
                 do {
                     try context.save()
@@ -60,13 +63,8 @@ class DetailViewController: UIViewController {
                 
                 navigationController?.popViewController(animated: true)
             } else {
-                let alertController = UIAlertController(title: "No Title", message: "Please enter a title. It cannot be empty!", preferredStyle: UIAlertControllerStyle.alert)
-                let okaction: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                alertController.addAction(okaction)
-                
-                self.present(alertController, animated: true, completion: nil)
+                print("note was empty. User decided not to continue creating a new note")
             }
-            
         } else {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Note")
             
@@ -74,11 +72,22 @@ class DetailViewController: UIViewController {
                 let results = try context.fetch(fetchRequest)
                 
                 results[noteIndexPath].setValue(letterTextView.text, forKey: "text")
+                results[noteIndexPath].setValue(titleTextView.text, forKey: "title")
+                results[noteIndexPath].setValue(Helper.sharedInstance.getCurrentTime(), forKey: "dateModified")
+                
                 try context.save()
             } catch let error as NSError {
                 print("Fetch notes failed. Error: \(error)")
             }
         }
     }
-    
+}
+
+extension DetailViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .gray {
+            textView.text = ""
+            textView.textColor = .black
+        }
+    }
 }
