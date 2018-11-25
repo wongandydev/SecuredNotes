@@ -71,12 +71,28 @@
                     <navigationItem key="navigationItem" id="NhU-BL-dA3"/>
                     <connections>
                         <outlet property="daysCollectionView" destination="2f3-n1-rpM" id="bLP-0O-nbJ"/>
-                        <segue destination="hf0-rt-bl5" kind="show" id="bLx-w7-bHm"/>
+                        <segue destination="FLt-cu-jxr" kind="show" id="CH7-MY-mg9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="125.59999999999999" y="86.453201970443359"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mch-Gz-Aai">
+            <objects>
+                <navigationController id="FLt-cu-jxr" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ndm-E0-pfu">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hf0-rt-bl5" kind="relationship" relationship="rootViewController" id="LGO-HH-nMG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="91i-OV-Laf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="846" y="86"/>
         </scene>
         <!--Password View Controller-->
         <scene sceneID="YOf-bB-kBJ">
@@ -276,7 +292,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="we1-IB-Czh">
-                                <rect key="frame" x="8" y="178" width="361" height="551"/>
+                                <rect key="frame" x="8" y="178" width="361" height="507"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
@@ -287,7 +303,7 @@
                                 <rect key="frame" x="8" y="109" width="361" height="29"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="sdD-hd-oRS"/>
+                                    <constraint firstAttribute="height" constant="29" id="KSs-OO-PDz"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -297,24 +313,34 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="SDS-7P-4YL" firstAttribute="trailing" secondItem="d2Z-Ah-xqV" secondAttribute="trailing" constant="6" id="0YY-4G-GVK"/>
-                            <constraint firstItem="we1-IB-Czh" firstAttribute="bottom" secondItem="SDS-7P-4YL" secondAttribute="bottom" id="FSp-Nd-0bQ"/>
-                            <constraint firstItem="d2Z-Ah-xqV" firstAttribute="trailing" secondItem="we1-IB-Czh" secondAttribute="trailing" id="MwJ-12-iLx"/>
-                            <constraint firstItem="d2Z-Ah-xqV" firstAttribute="leading" secondItem="SDS-7P-4YL" secondAttribute="leading" constant="8" id="Ocy-Mh-ccX"/>
-                            <constraint firstItem="d2Z-Ah-xqV" firstAttribute="top" secondItem="SDS-7P-4YL" secondAttribute="top" constant="21" id="fzZ-hd-H1j"/>
-                            <constraint firstItem="d2Z-Ah-xqV" firstAttribute="leading" secondItem="we1-IB-Czh" secondAttribute="leading" id="tqw-MV-0Xu"/>
-                            <constraint firstItem="we1-IB-Czh" firstAttribute="top" secondItem="d2Z-Ah-xqV" secondAttribute="bottom" constant="40" id="yk2-0b-Jcv"/>
+                            <constraint firstItem="we1-IB-Czh" firstAttribute="top" secondItem="d2Z-Ah-xqV" secondAttribute="bottom" constant="40" id="8RF-iD-Cc0"/>
+                            <constraint firstItem="SDS-7P-4YL" firstAttribute="trailing" secondItem="d2Z-Ah-xqV" secondAttribute="trailing" constant="6" id="Kwq-MJ-jy6"/>
+                            <constraint firstItem="d2Z-Ah-xqV" firstAttribute="top" secondItem="SDS-7P-4YL" secondAttribute="top" constant="21" id="M6p-b9-u2g"/>
+                            <constraint firstItem="we1-IB-Czh" firstAttribute="bottom" secondItem="SDS-7P-4YL" secondAttribute="bottom" id="N8s-kk-uwd"/>
+                            <constraint firstItem="d2Z-Ah-xqV" firstAttribute="leading" secondItem="SDS-7P-4YL" secondAttribute="leading" constant="8" id="Nkw-Mr-KbX"/>
+                            <constraint firstItem="d2Z-Ah-xqV" firstAttribute="leading" secondItem="we1-IB-Czh" secondAttribute="leading" id="S1A-Pk-3Tz"/>
+                            <constraint firstItem="d2Z-Ah-xqV" firstAttribute="trailing" secondItem="we1-IB-Czh" secondAttribute="trailing" id="UrL-Vr-bP0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SDS-7P-4YL"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="OgC-TH-4or">
+                        <barButtonItem key="rightBarButtonItem" title="Delete" id="RRd-qN-dHw">
+                            <connections>
+                                <action selector="deleteButtonTapped:" destination="hf0-rt-bl5" id="fLq-nT-fNn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="deleteButton" destination="RRd-qN-dHw" id="8SE-it-D1D"/>
                         <outlet property="letterTextView" destination="we1-IB-Czh" id="N9V-QI-gZB"/>
                         <outlet property="titleTextView" destination="d2Z-Ah-xqV" id="d1M-1m-p2B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKj-91-xWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="912.79999999999995" y="85.714285714285722"/>
+            <point key="canvasLocation" x="1566" y="86"/>
         </scene>
         <!--Secrets-->
         <scene sceneID="92I-3Z-Lct">
