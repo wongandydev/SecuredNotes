@@ -8,22 +8,22 @@
 
 import UIKit
 
-class DayPassObject{
+class Notes{
     var date: String
     var password: String
-    var letter: String
+    var note: String
     var title: String
     
-    init(date: String, password: String = "", letter: String, title: String) {
+    init(date: String, password: String = "", note: String, title: String) {
         self.date = date
         self.password = password
-        self.letter = letter
+        self.note = note
         self.title = title
     }
 }
 
-extension DayPassObject: Equatable {
-    static func == (lhs: DayPassObject, rhs: DayPassObject) -> Bool {
-        return lhs.date == rhs.date && lhs.letter == rhs.letter && lhs.password == rhs.password && lhs.title == rhs.password
+extension Notes: Equatable {
+    static func == (lhs: Notes, rhs: Notes) -> Bool {
+        return lhs.date == rhs.date && lhs.note == rhs.note && lhs.password == rhs.password && lhs.title == rhs.password
     }
 }
