@@ -14,7 +14,7 @@ class passwordCollectionViewCell: UICollectionViewCell {
 
 class PasswordViewController: UIViewController {
     
-    var passwordArr: [DayPassObject] = []
+    var passwordArr: [Notes] = []
     var popup:UIView!
     
     @IBOutlet weak var passwordCollectionView: UICollectionView!
