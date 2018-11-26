@@ -18,24 +18,29 @@ class DayCollectionViewCell: UICollectionViewCell {
     var passwordEntered: Bool = false
 }
 
-class DaysViewController: UIViewController {
+class NotesViewController: UIViewController {
 
     @IBOutlet weak var daysCollectionView: UICollectionView!
     
-    var daysArr: [DayPassObject] = [] {
+    var daysArr: [Notes] = [] {
         didSet {
             self.daysCollectionView.reloadData()
         }
     }
+    
+    private let refreshControl = UIRefreshControl()
     let notificationCenter = UNUserNotificationCenter.current()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         daysCollectionView.delegate = self
         daysCollectionView.dataSource = self
+        daysCollectionView.refreshControl = refreshControl
         daysCollectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         daysCollectionView.backgroundColor = .lightPink
+        
+        refreshControl.addTarget(self, action: #selector(refreshNotes(_:)), for: .valueChanged)
         
         self.view.backgroundColor = .lightPink
         self.navigationItem.title = "SecuredNotes"
@@ -44,7 +49,17 @@ class DaysViewController: UIViewController {
 //        daysArr = FakeAPIManager.sharedInstance.readJSON()
     }
     
+    @objc private func refreshNotes(_ sender: Any) {
+        getNotes()
+        
+        self.refreshControl.endRefreshing()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        getNotes()
+    }
+    
+    func getNotes(){
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -53,7 +68,7 @@ class DaysViewController: UIViewController {
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Note")
         
-        var newArr: [DayPassObject] = []
+        var newArr: [Notes] = []
         
         do {
             let results = try context.fetch(fetchRequest)
@@ -71,9 +86,9 @@ class DaysViewController: UIViewController {
                 
                 if (data.value(forKey: "password") != nil) {
                     let password = data.value(forKey: "password") as! String
-                    newArr.append(DayPassObject(date: date, password: password, letter: text, title: title))
+                    newArr.append(Notes(date: date, password: password, note: text, title: title))
                 } else {
-                    newArr.append(DayPassObject(date: date, letter: text, title: title))
+                    newArr.append(Notes(date: date, note: text, title: title))
                 }
             }
         } catch let error as NSError {
@@ -86,15 +101,14 @@ class DaysViewController: UIViewController {
     }
     
     @objc func addNote() {
-//        let viewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddNotesViewController") as? AddNotesViewController
         let viewController = storyboard?.instantiateViewController(withIdentifier: "detailViewController") as! DetailViewController
-        viewController.newNote = true
+        viewController.isNewNote = true
         
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
-extension DaysViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension NotesViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! DayCollectionViewCell
         if daysArr[indexPath.row].password != "" {
@@ -114,7 +128,7 @@ extension DaysViewController: UICollectionViewDelegate, UICollectionViewDelegate
     
 }
 
-extension DaysViewController: UICollectionViewDataSource {
+extension NotesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return daysArr.count
     }
@@ -134,10 +148,10 @@ extension DaysViewController: UICollectionViewDataSource {
     }
 }
 
-extension DaysViewController {
+extension NotesViewController {
     func authorizeUser(enteredPassword: String, password: String, indexPath: IndexPath) {
         let dvc = storyboard?.instantiateViewController(withIdentifier: "detailViewController") as! DetailViewController
-        dvc.letter = daysArr[indexPath.row].letter
+        dvc.note = daysArr[indexPath.row].note
         dvc.noteIndexPath = indexPath.row
         dvc.noteTitle = daysArr[indexPath.row].title
         if enteredPassword == password {
