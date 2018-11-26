@@ -12,10 +12,10 @@ import CoreData
 class DetailViewController: UIViewController {
     
     var noteTitle: String = ""
-    var letter: String = ""
+    var note: String = ""
     var noteIndexPath: Int = 0
-    var newNote: Bool = false
-    var deleteNote: Bool = false
+    var isNewNote: Bool = false
+    var willDeleteNote: Bool = false
     
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var letterTextView: UITextView!
@@ -37,7 +37,7 @@ class DetailViewController: UIViewController {
             
             context.delete(results[noteIndexPath])
             try context.save()
-            deleteNote = true
+            willDeleteNote = true
         } catch let error as NSError {
             print("Fetch notes failed. Error: \(error)")
         }
@@ -52,7 +52,7 @@ class DetailViewController: UIViewController {
         
         self.view.backgroundColor = .white
         
-        if newNote {
+        if isNewNote {
             deleteButton.isEnabled = false
             deleteButton.tintColor = .clear
         } else {
@@ -64,10 +64,10 @@ class DetailViewController: UIViewController {
         letterTextView.delegate = self
         
         titleTextView.textColor = noteTitle == "" ? .gray:.black
-        letterTextView.textColor = letter == "" ? .gray:.black
+        letterTextView.textColor = note == "" ? .gray:.black
         
         titleTextView.text = noteTitle == "" ? "Title":noteTitle
-        letterTextView.text = letter == "" ? "Note":letter
+        letterTextView.text = note == "" ? "Note":note
     }
     
     
@@ -79,7 +79,7 @@ class DetailViewController: UIViewController {
         
         let context = delegate.persistentContainer.viewContext
         
-        if (newNote) {
+        if isNewNote {
             let entity = NSEntityDescription.entity(forEntityName: "Note", in: context)!
             
             if titleTextView.text != "Title" && titleTextView.text != "" || letterTextView.text != "Note" && letterTextView.text != ""{
@@ -99,7 +99,7 @@ class DetailViewController: UIViewController {
             } else {
                 print("note was empty. User decided not to continue creating a new note")
             }
-        } else if (deleteNote){
+        } else if willDeleteNote {
             
         } else {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Note")
