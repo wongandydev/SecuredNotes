@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 class DetailViewController: UIViewController {
     
@@ -22,27 +23,21 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var deleteButton: UIBarButtonItem!
     
     
+    var ref: DatabaseReference!
+    
     @IBAction func deleteButtonTapped(_ sender: Any) {
-        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
+        let alertController = UIAlertController(title: "No Title", message: "Please enter a title. It cannot be empty!", preferredStyle: UIAlertControllerStyle.alert)
+        let deleteAction: UIAlertAction = UIAlertAction(title: "Delete", style: .default) { _ in
+            self.deleteNote()
+            self.navigationController?.popViewController(animated: true)
         }
         
-        let context = delegate.persistentContainer.viewContext
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Note")
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
         
-        do {
-            let results = try context.fetch(fetchRequest)
-            print("before: \(results)")
-            
-            context.delete(results[noteIndexPath])
-            try context.save()
-            willDeleteNote = true
-        } catch let error as NSError {
-            print("Fetch notes failed. Error: \(error)")
-        }
-        
-        self.navigationController?.popViewController(animated: true)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -50,7 +45,7 @@ class DetailViewController: UIViewController {
         
         letterTextView.contentInset = UIEdgeInsets(top: 20, left: 8, bottom: 0, right: 10)
         
-        self.view.backgroundColor = .white
+        ref = Database.database().reference()
         
         if isNewNote {
             deleteButton.isEnabled = false
@@ -70,7 +65,48 @@ class DetailViewController: UIViewController {
         letterTextView.text = note == "" ? "Note":note
     }
     
+    func addNote(entityName: String, context: NSManagedObjectContext) {
+        let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)!
+        
+        if titleTextView.text != "Title" && titleTextView.text != "" || letterTextView.text != "Note" && letterTextView.text != ""{
+            let note = NSManagedObject(entity: entity, insertInto: context)
+            
+            note.setValue(ref.childByAutoId().key, forKey: "uid")
+            note.setValue(titleTextView.text == "Title" ? "No title" : titleTextView.text, forKey: "title")
+            note.setValue(letterTextView.text, forKey: "note")
+            note.setValue(Helper.sharedInstance.getCurrentTime(), forKey: "dateCreated")
+            
+            do {
+                try context.save()
+            } catch let error as NSError {
+                print("Failed to add note. Error: \(error)")
+            }
+            
+            navigationController?.popViewController(animated: true)
+        } else {
+            print("note was empty. User decided not to continue creating a new note")
+        }
+    }
     
+    func deleteNote() {
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let context = delegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Note")
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            
+            context.delete(results[noteIndexPath])
+            try context.save()
+            willDeleteNote = true
+        } catch let error as NSError {
+            print("Fetch notes failed. Error: \(error)")
+        }
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -80,25 +116,7 @@ class DetailViewController: UIViewController {
         let context = delegate.persistentContainer.viewContext
         
         if isNewNote {
-            let entity = NSEntityDescription.entity(forEntityName: "Note", in: context)!
-            
-            if titleTextView.text != "Title" && titleTextView.text != "" || letterTextView.text != "Note" && letterTextView.text != ""{
-                let note = NSManagedObject(entity: entity, insertInto: context)
-                
-                note.setValue(titleTextView.text == "Title" ? "No title" : titleTextView.text, forKey: "title")
-                note.setValue(letterTextView.text, forKey: "text")
-                note.setValue(Helper.sharedInstance.getCurrentTime(), forKey: "dateCreated")
-                
-                do {
-                    try context.save()
-                } catch let error as NSError {
-                    print("Failed to add note. Error: \(error)")
-                }
-                
-                navigationController?.popViewController(animated: true)
-            } else {
-                print("note was empty. User decided not to continue creating a new note")
-            }
+            addNote(entityName: "Note", context: context)
         } else if willDeleteNote {
             
         } else {
@@ -107,7 +125,7 @@ class DetailViewController: UIViewController {
             do {
                 let results = try context.fetch(fetchRequest)
                 
-                results[noteIndexPath].setValue(letterTextView.text, forKey: "text")
+                results[noteIndexPath].setValue(letterTextView.text, forKey: "note")
                 results[noteIndexPath].setValue(titleTextView.text, forKey: "title")
                 results[noteIndexPath].setValue(Helper.sharedInstance.getCurrentTime(), forKey: "dateModified")
                 
