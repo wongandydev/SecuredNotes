@@ -9,13 +9,17 @@
 import UIKit
 
 class Notes{
-    var date: String
+    var uid: String
+    var dateCreated: String
+    var dateModified: String
     var password: String
     var note: String
     var title: String
     
-    init(date: String, password: String = "", note: String, title: String) {
-        self.date = date
+    init(uid: String, dateCreated: String, dateModified: String, password: String = "", note: String, title: String) {
+        self.uid = uid
+        self.dateCreated = dateCreated
+        self.dateModified = dateModified
         self.password = password
         self.note = note
         self.title = title
@@ -24,6 +28,6 @@ class Notes{
 
 extension Notes: Equatable {
     static func == (lhs: Notes, rhs: Notes) -> Bool {
-        return lhs.date == rhs.date && lhs.note == rhs.note && lhs.password == rhs.password && lhs.title == rhs.password
+        return lhs.uid == rhs.uid && lhs.dateCreated == rhs.dateCreated && lhs.dateModified == rhs.dateModified && lhs.note == rhs.note && lhs.password == rhs.password && lhs.title == rhs.password
     }
 }
