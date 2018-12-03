@@ -9,6 +9,7 @@
 import UIKit
 import CoreData 
 import UserNotifications
+import Firebase
 
 class DayCollectionViewCell: UICollectionViewCell {
     
@@ -21,6 +22,9 @@ class DayCollectionViewCell: UICollectionViewCell {
 class NotesViewController: UIViewController {
 
     @IBOutlet weak var daysCollectionView: UICollectionView!
+    let userUID = UIDevice.current.identifierForVendor?.uuidString
+    
+    var firebaseDatabase: DatabaseReference!
     
     var daysArr: [Notes] = [] {
         didSet {
@@ -29,11 +33,17 @@ class NotesViewController: UIViewController {
     }
     
     private let refreshControl = UIRefreshControl()
-    let notificationCenter = UNUserNotificationCenter.current()
+
+    let firstLaunch = UserDefaults.standard.bool(forKey: "firstLaunch")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        firebaseDatabase = Database.database().reference()
+        
+        Theme.applyTheme()
+        setUID()
+        
         daysCollectionView.delegate = self
         daysCollectionView.dataSource = self
         daysCollectionView.refreshControl = refreshControl
@@ -45,8 +55,6 @@ class NotesViewController: UIViewController {
         self.view.backgroundColor = .lightPink
         self.navigationItem.title = "SecuredNotes"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addNote))
-        
-//        daysArr = FakeAPIManager.sharedInstance.readJSON()
     }
     
     @objc private func refreshNotes(_ sender: Any) {
@@ -57,6 +65,34 @@ class NotesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         getNotes()
+    }
+    
+//    func isFirstLaunch() -> Bool {
+//        if !firstLaunch {
+//            return false
+//        } else {
+//            UserDefaults.standard.set(false, forKey: "firstLaunch")
+//            UserDefaults.standard.synchronize()
+//            return true
+//        }
+//    }
+    
+    func setUID(){
+        if UserDefaults.isFirstLaunch() {
+            guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            
+            let context = delegate.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "User", in: context)!
+            
+            let user = NSManagedObject(entity: entity, insertInto: context)
+            user.setValue(userUID, forKey: "uid")
+            self.firebaseDatabase.child("users/").setValue(userUID)
+        } else {
+            print("not first launch"
+            )
+        }
     }
     
     func getNotes(){
@@ -74,21 +110,17 @@ class NotesViewController: UIViewController {
             let results = try context.fetch(fetchRequest)
             
             for data in results {
+                let uid = data.value(forKey: "uid") as! String
                 let title = data.value(forKey: "title") as! String
-                let text = data.value(forKey: "text") as! String
-                var date = ""
-                
-                if (data.value(forKey: "dateModified") == nil) {
-                    date = Helper.sharedInstance.dateToString(date: data.value(forKey: "dateCreated") as! Date)
-                } else {
-                    date = Helper.sharedInstance.dateToString(date: data.value(forKey: "dateModified") as! Date)
-                }
-                
+                let note = data.value(forKey: "note") as! String
+                let dateCreated = Helper.sharedInstance.dateToString(date: data.value(forKey: "dateCreated") as! Date)
+                let dateModified = (data.value(forKey: "dateModified") as? Date) == nil ? "" : Helper.sharedInstance.dateToString(date: data.value(forKey: "dateModified") as! Date)
+            
                 if (data.value(forKey: "password") != nil) {
                     let password = data.value(forKey: "password") as! String
-                    newArr.append(Notes(date: date, password: password, note: text, title: title))
+                    newArr.append(Notes(uid: uid, dateCreated: dateCreated, dateModified: dateModified, password: password, note: note, title: title))
                 } else {
-                    newArr.append(Notes(date: date, note: text, title: title))
+                    newArr.append(Notes(uid: uid, dateCreated: dateCreated, dateModified: dateModified, note: note, title: title))
                 }
             }
         } catch let error as NSError {
@@ -97,6 +129,13 @@ class NotesViewController: UIViewController {
         
         if (daysArr != newArr) {
             daysArr = newArr
+            
+            for i in newArr {
+                self.firebaseDatabase.child("notes/\(i.uid)").setValue(["title": i.title, "note": i.note, "dateModified": i.dateModified, "password": i.password, "dateCreated": i.dateCreated])
+                self.firebaseDatabase.child("users/\(userUID!)/notes/\(i.uid)").setValue(["title": i.title, "note": i.note, "dateModified": i.dateModified, "password": i.password, "dateCreated": i.dateCreated])
+            }
+            
+//            self.firebaseDatabase.child(UIDevice.current.identifierForVendor?.uuidString ?? "no UUID").setValue(["title": newArr[0].title, "note": newArr[0].note])
         }
     }
     
@@ -137,7 +176,12 @@ extension NotesViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dayCell", for: indexPath) as! DayCollectionViewCell
         
         cell.titleLabel.text = daysArr[indexPath.row].title
-        cell.dateLabel.text = daysArr[indexPath.row].date
+        
+        if daysArr[indexPath.row].dateModified == "" {
+            cell.dateLabel.text = daysArr[indexPath.row].dateCreated
+        } else {
+            cell.dateLabel.text = daysArr[indexPath.row].dateModified
+        }
         
         cell.backgroundColor = .mintGreen
         cell.layer.borderColor = UIColor.white.cgColor
@@ -199,5 +243,17 @@ extension NotesViewController {
         
         self.view.addSubview(blurView)
         self.present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension UserDefaults {
+    static func isFirstLaunch() -> Bool{
+        let isFirstLaunch = !UserDefaults.standard.bool(forKey: "hasBeenLaunched")
+        if isFirstLaunch {
+            UserDefaults.standard.set(true, forKey: "hasBeenLaunched")
+            UserDefaults.standard.synchronize()
+        }
+        
+        return isFirstLaunch
     }
 }
