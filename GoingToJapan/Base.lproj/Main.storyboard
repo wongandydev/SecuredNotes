@@ -370,7 +370,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="D0Z-NP-2cS" kind="relationship" relationship="viewControllers" id="sQU-lu-lGK"/>
-                        <segue destination="ThV-wY-OzC" kind="relationship" relationship="viewControllers" id="6A1-La-m9y"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5a-2E-zkD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -399,11 +398,11 @@
             <objects>
                 <viewController id="WtT-ly-P6g" customClass="SettingsViewController" customModule="SecureNotes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sx6-Bu-L7K">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xet-9o-Dx1">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" id="uDp-Tf-myz" customClass="SettingsCell" customModule="SecureNotes" customModuleProvider="target">
