@@ -88,7 +88,6 @@ class NotesViewController: UIViewController {
             
             let user = NSManagedObject(entity: entity, insertInto: context)
             user.setValue(userUID, forKey: "uid")
-            self.firebaseDatabase.child("users/").setValue(userUID)
         } else {
             print("not first launch"
             )
