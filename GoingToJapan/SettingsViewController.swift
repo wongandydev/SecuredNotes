@@ -27,6 +27,12 @@ class SettingsViewController: UIViewController {
         settingTableView.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Theme.applyTheme()
+    }
+    
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
