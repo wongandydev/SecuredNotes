@@ -14,6 +14,7 @@ class DetailViewController: UIViewController {
     
     var noteTitle: String = ""
     var note: String = ""
+    var password: String = ""
     var noteIndexPath: Int = 0
     var isNewNote: Bool = false
     var willDeleteNote: Bool = false
@@ -38,6 +39,11 @@ class DetailViewController: UIViewController {
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func passwordButtonTapped(_ sender: Any) {
+        self.securedAlertMessage(title: "Set/Change Password?", message: "Please enter a password for the note.")
+        //So we are going to try and set a message to aloow users to add password. After changing the view of adding and editing notes to the same view controller, we removed the password functionaltiy
     }
     
     override func viewDidLoad() {
@@ -76,6 +82,10 @@ class DetailViewController: UIViewController {
             note.setValue(letterTextView.text, forKey: "note")
             note.setValue(Helper.sharedInstance.getCurrentTime(), forKey: "dateCreated")
             
+            if password != "" {
+                note.setValue(password, forKey: "password")
+            }
+            
             do {
                 try context.save()
             } catch let error as NSError {
@@ -108,6 +118,32 @@ class DetailViewController: UIViewController {
         }
     }
     
+    func securedAlertMessage(title: String, message: String) {
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+        blurView.frame = self.view.frame
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alertController.addTextField(configurationHandler: { textField in
+            textField.placeholder = "Enter Password"
+            textField.isSecureTextEntry = false
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Set Password", style: .default, handler: { buttonTapped in
+            if let enteredPassword = alertController.textFields?.first?.text {
+                self.password = enteredPassword
+            }
+            blurView.removeFromSuperview()
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            blurView.removeFromSuperview()
+        }))
+        
+        self.view.addSubview(blurView)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -127,7 +163,11 @@ class DetailViewController: UIViewController {
                 
                 results[noteIndexPath].setValue(letterTextView.text, forKey: "note")
                 results[noteIndexPath].setValue(titleTextView.text, forKey: "title")
-                results[noteIndexPath].setValue(Helper.sharedInstance.getCurrentTime(), forKey: "dateModified")
+                results[noteIndexPath].setValue(password, forKey: "password")
+                
+                if letterTextView.text != note || titleTextView.text != noteTitle {
+                    results[noteIndexPath].setValue(Helper.sharedInstance.getCurrentTime(), forKey: "dateModified")
+                }
                 
                 try context.save()
             } catch let error as NSError {
@@ -135,6 +175,8 @@ class DetailViewController: UIViewController {
             }
         }
     }
+    
+    
 }
 
 extension DetailViewController: UITextViewDelegate {
