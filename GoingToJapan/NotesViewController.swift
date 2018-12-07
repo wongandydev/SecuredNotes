@@ -185,6 +185,7 @@ extension NotesViewController {
         dvc.note = daysArr[indexPath.row].note
         dvc.noteIndexPath = indexPath.row
         dvc.noteTitle = daysArr[indexPath.row].title
+        dvc.password = daysArr[indexPath.row].password
         if enteredPassword == password {
             self.navigationController?.pushViewController(dvc, animated: true)
             let cell = daysCollectionView.cellForItem(at: indexPath) as! DayCollectionViewCell
