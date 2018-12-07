@@ -67,16 +67,6 @@ class NotesViewController: UIViewController {
         getNotes()
     }
     
-//    func isFirstLaunch() -> Bool {
-//        if !firstLaunch {
-//            return false
-//        } else {
-//            UserDefaults.standard.set(false, forKey: "firstLaunch")
-//            UserDefaults.standard.synchronize()
-//            return true
-//        }
-//    }
-    
     func setUID(){
         if UserDefaults.isFirstLaunch() {
             guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -133,8 +123,6 @@ class NotesViewController: UIViewController {
                 self.firebaseDatabase.child("notes/\(i.uid)").setValue(["title": i.title, "note": i.note, "dateModified": i.dateModified, "password": i.password, "dateCreated": i.dateCreated])
                 self.firebaseDatabase.child("users/\(userUID!)/notes/\(i.uid)").setValue(["title": i.title, "note": i.note, "dateModified": i.dateModified, "password": i.password, "dateCreated": i.dateCreated])
             }
-            
-//            self.firebaseDatabase.child(UIDevice.current.identifierForVendor?.uuidString ?? "no UUID").setValue(["title": newArr[0].title, "note": newArr[0].note])
         }
     }
     
