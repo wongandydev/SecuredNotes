@@ -27,14 +27,16 @@ struct Theme{
         
         UITextField.appearance().backgroundColor = UIColor.clear
         UITextView.appearance().backgroundColor = UIColor.clear
+        //UIView.appearance().backgroundColor = UIColor.lightGray
         
         UITableView.appearance().backgroundColor = UIColor.white
-        UITableViewCell.appearance().textLabel?.textColor = UIColor.black
+        UITableViewCell.appearance().textLabel?.textColor = UIColor.red //Doesn;t work
         UITableViewCell.appearance().backgroundColor = UIColor.clear
         
         UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self]).textColor = UIColor.black
         UILabel.appearance().textColor = UIColor.black
-
+        
+        //UIDatePicker.appearance().setValue(UIColor.black, forKey: "textColor")
     }
     
     static func dark(){
@@ -47,16 +49,17 @@ struct Theme{
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         //UINavigationBar.appearance().isTranslucent = false
         
-//        UITabBar.appearance().barStyle = UIBarStyle.black
+        UITabBar.appearance().barStyle = UIBarStyle.black
         UITabBar.appearance().barTintColor = UIColor.black
         
         UITextField.appearance().backgroundColor = UIColor.clear
         UITextView.appearance().backgroundColor = UIColor.clear
+        //UIView.appearance().backgroundColor = UIColor.black
         
         UITableView.appearance().backgroundColor = UIColor.black
         UITableViewCell.appearance().textLabel?.textColor = UIColor.white
         UITableViewCell.appearance().backgroundColor = UIColor.clear
-
+        
         UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self]).textColor = UIColor.white
         UILabel.appearance().textColor = UIColor.white
         
