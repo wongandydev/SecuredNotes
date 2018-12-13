@@ -8,3 +8,9 @@ There is definitely a lot that I can do with this app than just read it from a J
 
 Here is a video of how it works. 
 [Video](https://youtu.be/dsplPjs6q1o)
+
+**How to Run the Project**
+
+1. Clone this repo.
+2. Open the project on Xcode. 
+3. Run on a simulator or phyiscal phone. This project was built using iOS 11.0 and above.

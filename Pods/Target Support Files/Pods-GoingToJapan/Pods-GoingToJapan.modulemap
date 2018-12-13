@@ -1,0 +1,6 @@
+framework module Pods_GoingToJapan {
+  umbrella header "Pods-GoingToJapan-umbrella.h"
+
+  export *
+  module * { export * }
+}
