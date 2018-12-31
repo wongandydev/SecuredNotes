@@ -1,0 +1,359 @@
+// !$*UTF8*$!
+{
+archiveVersion = 1;
+classes = {
+};
+objectVersion = 50;
+objects = {
+
+/* Begin PBXBuildFile section */
+A010BF88214F307B00CB97C4 /* fakeData.json in Resources */ = {isa = PBXBuildFile; fileRef = A010BF87214F307A00CB97C4 /* fakeData.json */; };
+A0515E9D213447E300A08545 /* DayPassObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0515E9C213447E200A08545 /* DayPassObject.swift */; };
+A0515EA12135B1FA00A08545 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0515EA02135B1FA00A08545 /* UIColor+Extension.swift */; };
+A064A096213632AC00C79BD0 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A064A095213632AC00C79BD0 /* PasswordViewController.swift */; };
+A0D2432D21338FBA005111D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2432C21338FBA005111D1 /* AppDelegate.swift */; };
+A0D2432F21338FBA005111D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2432E21338FBA005111D1 /* ViewController.swift */; };
+A0D2433221338FBA005111D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0D2433021338FBA005111D1 /* Main.storyboard */; };
+A0D2433421338FBB005111D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0D2433321338FBB005111D1 /* Assets.xcassets */; };
+A0D2433721338FBB005111D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0D2433521338FBB005111D1 /* LaunchScreen.storyboard */; };
+A0D2433F2133908C005111D1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2433E2133908C005111D1 /* DetailViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+A010BF87214F307A00CB97C4 /* fakeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fakeData.json; sourceTree = SOURCE_ROOT; };
+A0515E9C213447E200A08545 /* DayPassObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPassObject.swift; sourceTree = "<group>"; };
+A0515EA02135B1FA00A08545 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+A064A095213632AC00C79BD0 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+A0D2432921338FBA005111D1 /* SecureNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+A0D2432C21338FBA005111D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+A0D2432E21338FBA005111D1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+A0D2433121338FBA005111D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+A0D2433321338FBB005111D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+A0D2433621338FBB005111D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+A0D2433821338FBB005111D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+A0D2433E2133908C005111D1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+A0D2432621338FBA005111D1 /* Frameworks */ = {
+isa = PBXFrameworksBuildPhase;
+buildActionMask = 2147483647;
+files = (
+);
+runOnlyForDeploymentPostprocessing = 0;
+};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+A0D2432021338FBA005111D1 = {
+isa = PBXGroup;
+children = (
+A0D2432B21338FBA005111D1 /* GoingToJapan */,
+A0D2432A21338FBA005111D1 /* Products */,
+);
+sourceTree = "<group>";
+};
+A0D2432A21338FBA005111D1 /* Products */ = {
+isa = PBXGroup;
+children = (
+A0D2432921338FBA005111D1 /* SecureNotes.app */,
+);
+name = Products;
+sourceTree = "<group>";
+};
+A0D2432B21338FBA005111D1 /* GoingToJapan */ = {
+isa = PBXGroup;
+children = (
+A0D2432C21338FBA005111D1 /* AppDelegate.swift */,
+A0D2432E21338FBA005111D1 /* ViewController.swift */,
+A0515E9C213447E200A08545 /* DayPassObject.swift */,
+A0D2433021338FBA005111D1 /* Main.storyboard */,
+A0D2433E2133908C005111D1 /* DetailViewController.swift */,
+A064A095213632AC00C79BD0 /* PasswordViewController.swift */,
+A010BF87214F307A00CB97C4 /* fakeData.json */,
+A0515EA02135B1FA00A08545 /* UIColor+Extension.swift */,
+A0D2433321338FBB005111D1 /* Assets.xcassets */,
+A0D2433521338FBB005111D1 /* LaunchScreen.storyboard */,
+A0D2433821338FBB005111D1 /* Info.plist */,
+);
+path = GoingToJapan;
+sourceTree = "<group>";
+};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+A0D2432821338FBA005111D1 /* GoingToJapan */ = {
+isa = PBXNativeTarget;
+buildConfigurationList = A0D2433B21338FBB005111D1 /* Build configuration list for PBXNativeTarget "GoingToJapan" */;
+buildPhases = (
+A0D2432521338FBA005111D1 /* Sources */,
+A0D2432621338FBA005111D1 /* Frameworks */,
+A0D2432721338FBA005111D1 /* Resources */,
+);
+buildRules = (
+);
+dependencies = (
+);
+name = GoingToJapan;
+productName = GoingToJapan;
+productReference = A0D2432921338FBA005111D1 /* SecureNotes.app */;
+productType = "com.apple.product-type.application";
+};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+A0D2432121338FBA005111D1 /* Project object */ = {
+isa = PBXProject;
+attributes = {
+LastSwiftUpdateCheck = 0940;
+LastUpgradeCheck = 0940;
+ORGANIZATIONNAME = "Andy Wong";
+TargetAttributes = {
+A0D2432821338FBA005111D1 = {
+CreatedOnToolsVersion = 9.4.1;
+};
+};
+};
+buildConfigurationList = A0D2432421338FBA005111D1 /* Build configuration list for PBXProject "GoingToJapan" */;
+compatibilityVersion = "Xcode 9.3";
+developmentRegion = en;
+hasScannedForEncodings = 0;
+knownRegions = (
+en,
+Base,
+);
+mainGroup = A0D2432021338FBA005111D1;
+productRefGroup = A0D2432A21338FBA005111D1 /* Products */;
+projectDirPath = "";
+projectRoot = "";
+targets = (
+A0D2432821338FBA005111D1 /* GoingToJapan */,
+);
+};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+A0D2432721338FBA005111D1 /* Resources */ = {
+isa = PBXResourcesBuildPhase;
+buildActionMask = 2147483647;
+files = (
+A0D2433721338FBB005111D1 /* LaunchScreen.storyboard in Resources */,
+A0D2433421338FBB005111D1 /* Assets.xcassets in Resources */,
+A0D2433221338FBA005111D1 /* Main.storyboard in Resources */,
+A010BF88214F307B00CB97C4 /* fakeData.json in Resources */,
+);
+runOnlyForDeploymentPostprocessing = 0;
+};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+A0D2432521338FBA005111D1 /* Sources */ = {
+isa = PBXSourcesBuildPhase;
+buildActionMask = 2147483647;
+files = (
+A0D2433F2133908C005111D1 /* DetailViewController.swift in Sources */,
+A0D2432F21338FBA005111D1 /* ViewController.swift in Sources */,
+A0515E9D213447E300A08545 /* DayPassObject.swift in Sources */,
+A0D2432D21338FBA005111D1 /* AppDelegate.swift in Sources */,
+A0515EA12135B1FA00A08545 /* UIColor+Extension.swift in Sources */,
+A064A096213632AC00C79BD0 /* PasswordViewController.swift in Sources */,
+);
+runOnlyForDeploymentPostprocessing = 0;
+};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+A0D2433021338FBA005111D1 /* Main.storyboard */ = {
+isa = PBXVariantGroup;
+children = (
+A0D2433121338FBA005111D1 /* Base */,
+);
+name = Main.storyboard;
+sourceTree = "<group>";
+};
+A0D2433521338FBB005111D1 /* LaunchScreen.storyboard */ = {
+isa = PBXVariantGroup;
+children = (
+A0D2433621338FBB005111D1 /* Base */,
+);
+name = LaunchScreen.storyboard;
+sourceTree = "<group>";
+};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+A0D2433921338FBB005111D1 /* Debug */ = {
+isa = XCBuildConfiguration;
+buildSettings = {
+ALWAYS_SEARCH_USER_PATHS = NO;
+CLANG_ANALYZER_NONNULL = YES;
+CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+CLANG_CXX_LIBRARY = "libc++";
+CLANG_ENABLE_MODULES = YES;
+CLANG_ENABLE_OBJC_ARC = YES;
+CLANG_ENABLE_OBJC_WEAK = YES;
+CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+CLANG_WARN_BOOL_CONVERSION = YES;
+CLANG_WARN_COMMA = YES;
+CLANG_WARN_CONSTANT_CONVERSION = YES;
+CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+CLANG_WARN_EMPTY_BODY = YES;
+CLANG_WARN_ENUM_CONVERSION = YES;
+CLANG_WARN_INFINITE_RECURSION = YES;
+CLANG_WARN_INT_CONVERSION = YES;
+CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+CLANG_WARN_STRICT_PROTOTYPES = YES;
+CLANG_WARN_SUSPICIOUS_MOVE = YES;
+CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+CLANG_WARN_UNREACHABLE_CODE = YES;
+CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+CODE_SIGN_IDENTITY = "iPhone Developer";
+COPY_PHASE_STRIP = NO;
+DEBUG_INFORMATION_FORMAT = dwarf;
+ENABLE_STRICT_OBJC_MSGSEND = YES;
+ENABLE_TESTABILITY = YES;
+GCC_C_LANGUAGE_STANDARD = gnu11;
+GCC_DYNAMIC_NO_PIC = NO;
+GCC_NO_COMMON_BLOCKS = YES;
+GCC_OPTIMIZATION_LEVEL = 0;
+GCC_PREPROCESSOR_DEFINITIONS = (
+"DEBUG=1",
+"$(inherited)",
+);
+GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+GCC_WARN_UNDECLARED_SELECTOR = YES;
+GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+GCC_WARN_UNUSED_FUNCTION = YES;
+GCC_WARN_UNUSED_VARIABLE = YES;
+IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+MTL_ENABLE_DEBUG_INFO = YES;
+ONLY_ACTIVE_ARCH = YES;
+SDKROOT = iphoneos;
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+};
+name = Debug;
+};
+A0D2433A21338FBB005111D1 /* Release */ = {
+isa = XCBuildConfiguration;
+buildSettings = {
+ALWAYS_SEARCH_USER_PATHS = NO;
+CLANG_ANALYZER_NONNULL = YES;
+CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+CLANG_CXX_LIBRARY = "libc++";
+CLANG_ENABLE_MODULES = YES;
+CLANG_ENABLE_OBJC_ARC = YES;
+CLANG_ENABLE_OBJC_WEAK = YES;
+CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+CLANG_WARN_BOOL_CONVERSION = YES;
+CLANG_WARN_COMMA = YES;
+CLANG_WARN_CONSTANT_CONVERSION = YES;
+CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+CLANG_WARN_EMPTY_BODY = YES;
+CLANG_WARN_ENUM_CONVERSION = YES;
+CLANG_WARN_INFINITE_RECURSION = YES;
+CLANG_WARN_INT_CONVERSION = YES;
+CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+CLANG_WARN_STRICT_PROTOTYPES = YES;
+CLANG_WARN_SUSPICIOUS_MOVE = YES;
+CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+CLANG_WARN_UNREACHABLE_CODE = YES;
+CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+CODE_SIGN_IDENTITY = "iPhone Developer";
+COPY_PHASE_STRIP = NO;
+DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+ENABLE_NS_ASSERTIONS = NO;
+ENABLE_STRICT_OBJC_MSGSEND = YES;
+GCC_C_LANGUAGE_STANDARD = gnu11;
+GCC_NO_COMMON_BLOCKS = YES;
+GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+GCC_WARN_UNDECLARED_SELECTOR = YES;
+GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+GCC_WARN_UNUSED_FUNCTION = YES;
+GCC_WARN_UNUSED_VARIABLE = YES;
+IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+MTL_ENABLE_DEBUG_INFO = NO;
+SDKROOT = iphoneos;
+SWIFT_COMPILATION_MODE = wholemodule;
+SWIFT_OPTIMIZATION_LEVEL = "-O";
+VALIDATE_PRODUCT = YES;
+};
+name = Release;
+};
+A0D2433C21338FBB005111D1 /* Debug */ = {
+isa = XCBuildConfiguration;
+buildSettings = {
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+CODE_SIGN_STYLE = Automatic;
+DEVELOPMENT_TEAM = CBB4HB269Q;
+INFOPLIST_FILE = GoingToJapan/Info.plist;
+LD_RUNPATH_SEARCH_PATHS = (
+"$(inherited)",
+"@executable_path/Frameworks",
+);
+PRODUCT_BUNDLE_IDENTIFIER = andywong.GoingToJapan;
+PRODUCT_NAME = SecureNotes;
+SWIFT_VERSION = 4.0;
+TARGETED_DEVICE_FAMILY = "1,2";
+};
+name = Debug;
+};
+A0D2433D21338FBB005111D1 /* Release */ = {
+isa = XCBuildConfiguration;
+buildSettings = {
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+CODE_SIGN_STYLE = Automatic;
+DEVELOPMENT_TEAM = CBB4HB269Q;
+INFOPLIST_FILE = GoingToJapan/Info.plist;
+LD_RUNPATH_SEARCH_PATHS = (
+"$(inherited)",
+"@executable_path/Frameworks",
+);
+PRODUCT_BUNDLE_IDENTIFIER = andywong.GoingToJapan;
+PRODUCT_NAME = SecureNotes;
+SWIFT_VERSION = 4.0;
+TARGETED_DEVICE_FAMILY = "1,2";
+};
+name = Release;
+};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+A0D2432421338FBA005111D1 /* Build configuration list for PBXProject "GoingToJapan" */ = {
+isa = XCConfigurationList;
+buildConfigurations = (
+A0D2433921338FBB005111D1 /* Debug */,
+A0D2433A21338FBB005111D1 /* Release */,
+);
+defaultConfigurationIsVisible = 0;
+defaultConfigurationName = Release;
+};
+A0D2433B21338FBB005111D1 /* Build configuration list for PBXNativeTarget "GoingToJapan" */ = {
+isa = XCConfigurationList;
+buildConfigurations = (
+A0D2433C21338FBB005111D1 /* Debug */,
+A0D2433D21338FBB005111D1 /* Release */,
+);
+defaultConfigurationIsVisible = 0;
+defaultConfigurationName = Release;
+};
+/* End XCConfigurationList section */
+};
+rootObject = A0D2432121338FBA005111D1 /* Project object */;
+}
