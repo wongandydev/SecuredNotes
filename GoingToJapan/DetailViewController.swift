@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
     var ref: DatabaseReference!
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
-        let alertController = UIAlertController(title: "No Title", message: "Please enter a title. It cannot be empty!", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "Delete Note?", message: "Are you sure you want to delete this note? Click 'Delete' to confirm. ", preferredStyle: UIAlertControllerStyle.alert)
         let deleteAction: UIAlertAction = UIAlertAction(title: "Delete", style: .default) { _ in
             self.deleteNote()
             self.navigationController?.popViewController(animated: true)
@@ -50,6 +50,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         letterTextView.contentInset = UIEdgeInsets(top: 20, left: 8, bottom: 0, right: 10)
+        addKeyboardDoneButton()
         
         ref = Database.database().reference()
         
@@ -69,6 +70,20 @@ class DetailViewController: UIViewController {
         
         titleTextView.text = noteTitle == "" ? "Title":noteTitle
         letterTextView.text = note == "" ? "Note":note
+    }
+    
+    func addKeyboardDoneButton() {
+        let toolbar:UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonAction))
+        toolbar.setItems([flexSpace, doneButton], animated: false)
+        toolbar.sizeToFit()
+        titleTextView.inputAccessoryView = toolbar
+        letterTextView.inputAccessoryView =  toolbar
+    }
+    
+    @objc func doneButtonAction() {
+        self.view.endEditing(true)
     }
     
     func addNote(entityName: String, context: NSManagedObjectContext) {
@@ -184,6 +199,19 @@ extension DetailViewController: UITextViewDelegate {
         if textView.textColor == .gray {
             textView.text = ""
             textView.textColor = .black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        
+        if titleTextView.text == "" {
+            titleTextView.text = "Title"
+            titleTextView.textColor = .gray
+        }
+        
+        if letterTextView.text == "" {
+            letterTextView.text = "Note"
+            letterTextView.textColor = .gray
         }
     }
 }

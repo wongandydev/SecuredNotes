@@ -16,7 +16,7 @@ There is definitely a lot that I can do with this app than just read it from a J
 
 
 Here is a video of how it works. 
-[Video](https://youtu.be/dsplPjs6q1o)
+[Video](https://youtu.be/a7bMYavNmHg)
 
 **How to Run the Project**
 
